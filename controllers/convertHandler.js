@@ -36,13 +36,14 @@ function ConvertHandler() {
     }
 
     let num1 = nums[0];
-    let num2 = nums[1];
-
-    result = parseFloat(num1) / parseFloat(num2);
+    let num2 = nums[1] || "1";
 
     if (isNaN(num1) || isNaN(num2)) {
       return undefined;
     }
+
+    result = parseFloat(num1) / parseFloat(num2);
+
     return result;
   };
 

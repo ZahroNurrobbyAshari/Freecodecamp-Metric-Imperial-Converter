@@ -28,6 +28,15 @@ module.exports = function (app) {
       returnUnit
     );
 
-    res.json({ initNum, initUnit, returnNum, returnUnit, string: toString });
+    let response = {
+      initNum,
+      initUnit,
+      returnNum,
+      returnUnit,
+      string: toString,
+    };
+
+    console.log(response);
+    res.json(response);
   });
 };
