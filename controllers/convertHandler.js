@@ -106,7 +106,7 @@ function ConvertHandler() {
       case "l":
         return "liters";
       case "kg":
-        return "kilogram";
+        return "kilograms";
       default:
         return "don knmow";
     }
@@ -146,7 +146,7 @@ function ConvertHandler() {
   this.getString = function (initNum, initUnit, returnNum, returnUnit) {
     let result = `${initNum} ${this.spellOutUnit(
       initUnit
-    )} converts to ${this.convert(returnNum, returnUnit)} ${this.spellOutUnit(
+    )} converts to ${this.convert(initNum, initUnit)} ${this.spellOutUnit(
       this.getReturnUnit(initUnit)
     )}`;
 
