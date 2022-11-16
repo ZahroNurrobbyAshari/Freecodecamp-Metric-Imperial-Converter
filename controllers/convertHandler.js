@@ -1,3 +1,5 @@
+const { init } = require("../server");
+
 // number and string splitter
 let numberStringSplitter = (input) => {
   //get number
@@ -59,7 +61,7 @@ function ConvertHandler() {
         return "lbs";
       case "mi":
         return "mi";
-      case "L":
+      case "l":
         return "L";
       case "kg":
         return "kg";
@@ -69,28 +71,84 @@ function ConvertHandler() {
   };
 
   this.getReturnUnit = function (initUnit) {
-    let result;
+    let unit = initUnit.toLowerCase();
 
-    return result;
+    switch (unit) {
+      case "km":
+        return "mi";
+      case "gal":
+        return "L";
+      case "lbs":
+        return "kg";
+      case "mi":
+        return "km";
+      case "l":
+        return "gal";
+      case "kg":
+        return "lbs";
+      default:
+        return undefined;
+    }
   };
 
-  this.spellOutUnit = function (unit) {
-    let result;
+  this.spellOutUnit = function (initUnit) {
+    let unit = initUnit.toLowerCase();
 
-    return result;
+    switch (unit) {
+      case "km":
+        return "kilometers";
+      case "gal":
+        return "gallons";
+      case "lbs":
+        return "pounds";
+      case "mi":
+        return "miles";
+      case "l":
+        return "liters";
+      case "kg":
+        return "kilogram";
+      default:
+        return "don knmow";
+    }
   };
 
   this.convert = function (initNum, initUnit) {
     const galToL = 3.78541;
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
+    let unit = initUnit.toLowerCase();
     let result;
-
-    return result;
+    switch (unit) {
+      case "km":
+        result = initNum / miToKm;
+        break;
+      case "gal":
+        result = initNum * galToL;
+        break;
+      case "lbs":
+        result = initNum * lbsToKg;
+        break;
+      case "mi":
+        result = initNum * miToKm;
+        break;
+      case "l":
+        result = initNum / galToL;
+        break;
+      case "kg":
+        result = initNum / lbsToKg;
+        break;
+      default:
+        return undefined;
+    }
+    return parseFloat(result.toFixed(5));
   };
 
   this.getString = function (initNum, initUnit, returnNum, returnUnit) {
-    let result;
+    let result = `${initNum} ${this.spellOutUnit(
+      initUnit
+    )} converts to ${this.convert(returnNum, returnUnit)} ${this.spellOutUnit(
+      this.getReturnUnit(initUnit)
+    )}`;
 
     return result;
   };
