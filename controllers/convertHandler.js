@@ -144,13 +144,9 @@ function ConvertHandler() {
   };
 
   this.getString = function (initNum, initUnit, returnNum, returnUnit) {
-    let result = `${initNum} ${this.spellOutUnit(
+    return `${initNum} ${this.spellOutUnit(
       initUnit
-    )} converts to ${this.convert(initNum, initUnit)} ${this.spellOutUnit(
-      this.getReturnUnit(initUnit)
-    )}`;
-
-    return result;
+    )} converts to ${returnNum} ${this.spellOutUnit(returnUnit)}`;
   };
 }
 
